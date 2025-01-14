@@ -1,8 +1,15 @@
 import "./Product.css";
+import { useNavigate } from "react-router-dom";
 
 function Product(props) {
+  const navigate = useNavigate();
+
   function handleClick() {
     props.setAmount(props.amount + 1);
+  }
+
+  function navigateToProductPage() {
+    navigate(`/product/${props.title}`);
   }
 
   return (
@@ -14,7 +21,9 @@ function Product(props) {
         <button onClick={handleClick} className="product__button">
           Add to cart
         </button>
-        <button className="product__button">Se mer info</button>
+        <button className="product__button" onClick={navigateToProductPage}>
+          Se mer info
+        </button>
       </footer>
     </article>
   );

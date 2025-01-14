@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <Products />,
   },
   {
-    path: "/product",
+    path: "/product/:name", // :name blir som en placeholder som ersätts av ett produktnamn senare
     element: <ProductInfo />,
   },
 ]);
