@@ -1,24 +1,16 @@
-import './Products.css';
-import { useState, useEffect } from 'react';
+import "./Products.css";
+import { useState, useEffect } from "react";
+import { useGetProductsQuery } from "../api/apiSlice";
 
-import Header from '../components/Header/Header';
-import Product from '../components/Product/Product';
+import Header from "../components/Header/Header";
+import Product from "../components/Product/Product";
 
 function Products() {
-  const [products, setProducts] = useState([]);
+  const { data, isError, isLoading } = useGetProductsQuery();
 
-  useEffect(() => {
-    async function getProducts() {
-      const response = await fetch('https://dummyjson.com/products');
-      const data = await response.json();
-      console.log(data);
-      setProducts(data.products);
-    }
+  console.log(data);
 
-    getProducts();
-  }, []);
-
-  const productComponents = products.map((product) => {
+  const productComponents = data?.products.map((product) => {
     return (
       <Product
         title={product.title}
@@ -34,7 +26,11 @@ function Products() {
   return (
     <section>
       <Header />
-      <section className='products'>{productComponents}</section>
+      {isLoading ? (
+        <h3>Laddar produkter...</h3>
+      ) : (
+        <section className="products">{productComponents}</section>
+      )}
     </section>
   );
 }

@@ -1,20 +1,20 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from "react-router-dom";
 
-import Products from '../pages/Products';
-import ProductInfo from '../pages/ProductInfo';
-import Order from '../pages/Order';
+import Products from "../pages/Products";
+import ProductInfo from "../pages/ProductInfo";
+import Order from "../pages/Order";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Products />,
   },
   {
-    path: '/produkt/:name', //Dynamisk url där :name ersätts med något
+    path: "/produkt/:id", //Dynamisk url där :id ersätts med något
     element: <ProductInfo />,
   },
   {
-    path: '/cart',
+    path: "/cart",
     element: <Order />,
   },
 ]);
