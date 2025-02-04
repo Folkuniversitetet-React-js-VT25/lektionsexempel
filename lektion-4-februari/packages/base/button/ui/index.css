@@ -1,0 +1,17 @@
+.button {
+  border-radius: 8px;
+  font-weight: 700;
+  background-color: #ccc;
+  padding: 16px 24px;
+  color: #222;
+  transition: all 0.2s ease;
+  line-height: 140%;
+}
+
+.button__regular {
+  width: inherit;
+}
+
+.button__stretch {
+  width: 100%;
+}
