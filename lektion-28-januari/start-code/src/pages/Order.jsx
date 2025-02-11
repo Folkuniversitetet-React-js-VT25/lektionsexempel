@@ -1,12 +1,15 @@
-import './Order.css';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import CartItem from '../components/CartItem/CartItem';
+import "./Order.css";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import CartItem from "../components/CartItem/CartItem";
+import { useCreateOrderMutation } from "../api/apiSlice";
 
 function Order() {
   const cart = useSelector((state) => {
     return state.cart;
   });
+  const [createOrder, { isLoading, isSuccess, isError, error }] =
+    useCreateOrderMutation();
 
   const cartItemComponents = cart.map((item) => {
     return <CartItem item={item} key={item.id} />;
@@ -19,17 +22,23 @@ function Order() {
       return item.price + total;
     }, initialValue);
 
-    return total;
+    return Math.round(total);
+  }
+
+  async function placeOrder() {
+    const order = await createOrder(cart).unwrap();
+    console.log(order);
   }
 
   return (
-    <section className='order'>
+    <section className="order">
       <h2>Cart</h2>
-      <section className='order__summary'>
+      <section className="order__summary">
         {cartItemComponents}
         <p>Summa: {sum()} kr</p>
       </section>
-      <Link to='/'>Tillbaka till produkter</Link>
+      <button onClick={placeOrder}>Beställ</button>
+      <Link to="/">Tillbaka till produkter</Link>
     </section>
   );
 }
