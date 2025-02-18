@@ -6,10 +6,12 @@
   color: #222;
   transition: all 0.2s ease;
   line-height: 140%;
+  margin-bottom: 1rem;
 }
 
 .button__regular {
   width: inherit;
+  max-width: 20rem;
 }
 
 .button__stretch {

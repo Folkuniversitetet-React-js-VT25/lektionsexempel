@@ -1,17 +1,21 @@
 import "./index.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { Button } from "@jokeApp/button";
 import { useData } from "../data";
+import { addJoke } from "@jokeApp/reducers";
 
 function LandingPage() {
   const [quote, setQuote] = useState(null);
+  const dispatch = useDispatch();
 
   const { fetchQuote } = useData();
 
   async function handleFetchQuote() {
     const quote = await fetchQuote();
     setQuote(quote);
+    dispatch(addJoke(quote));
   }
 
   return (
